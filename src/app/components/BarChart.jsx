@@ -286,14 +286,14 @@ function BarChart() {
       <div className="flex justify-center space-x-4 mb-6">
         {dataHistory.length > 1 && (
           <>
-            <button
+            {/* <button
               onClick={() =>
                 setDataHistory((prevHistory) => prevHistory.slice(0, -1))
               }
               className="px-4 py-2 bg-blue-600 text-white rounded-md shadow hover:bg-blue-700"
             >
               ย้อนกลับ
-            </button>
+            </button> */}
             <button
               onClick={() => setDataHistory([chartData])}
               className="px-4 py-2 bg-red-600 text-white rounded-md shadow hover:bg-red-700"

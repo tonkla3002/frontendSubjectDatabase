@@ -3,10 +3,8 @@
 import { useState, useEffect } from 'react';
 import { myapi } from '../../../lib/axios';
 
-let state = 1
+let state = 1;
 export default function TopPage() {
-
-
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState('');
@@ -18,8 +16,10 @@ export default function TopPage() {
     const fetchData = async () => {
       setLoading(true);
       try {
-        const response = await myapi.get(`/searchTop?search=${search}&category=${category}&orderby=${orderby}`);
-        setData(response.data);  // ตั้งค่าข้อมูลในตาราง
+        const response = await myapi.get(
+          `/searchTop?search=${search}&category=${category}&orderby=${orderby}`
+        );
+        setData(response.data); // ตั้งค่าข้อมูลในตาราง
       } catch (error) {
         console.error('Error fetching data:', error);
       } finally {
@@ -34,53 +34,52 @@ export default function TopPage() {
   };
 
   const handleCategoryChange = (e) => {
-    setCategory(e.target.value);  // เปลี่ยนค่าประเภทที่เลือก
+    setCategory(e.target.value); // เปลี่ยนค่าประเภทที่เลือก
   };
-
 
   const handleSubmit = (e) => {
     try {
-      console.log("State on if = ", state)
+      console.log('State on if = ', state);
       if (state === 0) {
-        state = 1
+        state = 1;
         setOrderby('ASC');
-        console.log("State in if = ", state)
-      }
-      else {
-        state = 0
+        console.log('State in if = ', state);
+      } else {
+        state = 0;
         setOrderby('DESC');
-        console.log("State in else = ", state)
+        console.log('State in else = ', state);
       }
-      console.log("State out condition= ", state)
-
+      console.log('State out condition= ', state);
     } catch (error) {
-      console.error("Error during registration:", error);
-
+      console.error('Error during registration:', error);
     }
-
   };
 
   return (
     <div className="container mx-auto mt-10">
-      <h1 className="text-3xl font-bold mb-4">Top 10 Data</h1>
-      <button onClick={handleSubmit} type='' className='bg-green-500 p-2 rounded-md text-white'>Sort</button>
-
+      <h1 className="text-3xl font-extrabold mb-6 text-gray-800">Top 10 Data</h1>
+      <button
+        onClick={handleSubmit}
+        className="text-white bg-green-500 hover:bg-green-600 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-6 focus:outline-none"
+      >
+        Sort
+      </button>
 
       {/* ช่องค้นหา */}
       <div className="flex space-x-4 mb-6">
         <input
           type="text"
-          placeholder="Search.."
+          placeholder="Search..."
           value={search}
           onChange={handleSearch}
-          className="border p-2 rounded w-full"
+          className="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 w-full"
         />
 
         {/* Dropdown สำหรับเลือกประเภทการค้นหา */}
         <select
           value={category}
           onChange={handleCategoryChange}
-          className="border p-2 rounded"
+          className="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5"
         >
           <option value="all">All Categories</option>
           <option value="abdomen">Abdomen</option>
@@ -102,75 +101,87 @@ export default function TopPage() {
       {loading ? (
         <p>Loading...</p>
       ) : (
-        <table className="min-w-full bg-white border">
-          <thead>
-            <tr>
-              <th className="py-2 px-3 border">Order</th>
-              <th className="py-2 px-3 border">Age</th>
-              <th className="py-2 px-3 border">Abdomen</th>
-              <th className="py-2 px-3 border">Ankle</th>
-              <th className="py-2 px-3 border">Biceps</th>
-              <th className="py-2 px-3 border">Bodyfat</th>
-              <th className="py-2 px-3 border">Chest</th>
-              <th className="py-2 px-3 border">Density</th>
-              <th className="py-2 px-3 border">Forearm</th>
-              <th className="py-2 px-3 border">Hip</th>
-              <th className="py-2 px-3 border">Knee</th>
-              <th className="py-2 px-3 border">Neck</th>
-              <th className="py-2 px-3 border">Thigh</th>
-              <th className="py-2 px-3 border">Wrist</th>
-              <th className="py-2 px-3 border">Weight</th>
-              <th className="py-2 px-3 border">Height</th>
-            </tr>
-          </thead>
-          {category == 'all' ?
-            <tbody>
-              {data.map((item, index) => (
-                <tr key={index}>
-                  <td className="py-2 px-3 border">{index + 1}</td>
-                  <td className="py-2 px-13 border">{item.age_analys}</td>
-                  <td className="py-2 px-3 border">{item.avg_abdomen}</td>
-                  <td className="py-2 px-3 border">{item.avg_ankle}</td>
-                  <td className="py-2 px-3 border">{item.avg_biceps}</td>
-                  <td className="py-2 px-3 border">{item.avg_bodyfat}</td>
-                  <td className="py-2 px-3 border">{item.avg_chest}</td>
-                  <td className="py-2 px-3 border">{item.avg_density}</td>
-                  <td className="py-2 px-3 border">{item.avg_forearm}</td>
-                  <td className="py-2 px-3 border">{item.avg_hip}</td>
-                  <td className="py-2 px-3 border">{item.avg_knee}</td>
-                  <td className="py-2 px-3 border">{item.avg_neck}</td>
-                  <td className="py-2 px-3 border">{item.avg_thigh}</td>
-                  <td className="py-2 px-3 border">{item.avg_wrist}</td>
-                  <td className="py-2 px-3 border">{item.avg_weight}</td>
-                  <td className="py-2 px-3 border">{item.avg_height}</td>
-                </tr>
-              ))}
-            </tbody>
-            :
-            <tbody>
-              {data.map((item, index) => (
-                <tr key={index}>
-                  <td className="py-2 px-3 border">{index + 1}</td>
-                  <td className="py-2 px-13 border">{item.age}</td>
-                  <td className="py-2 px-3 border">{item.abdomen}</td>
-                  <td className="py-2 px-3 border">{item.ankle}</td>
-                  <td className="py-2 px-3 border">{item.biceps}</td>
-                  <td className="py-2 px-3 border">{item.bodyFat}</td>
-                  <td className="py-2 px-3 border">{item.chest}</td>
-                  <td className="py-2 px-3 border">{item.density}</td>
-                  <td className="py-2 px-3 border">{item.forearm}</td>
-                  <td className="py-2 px-3 border">{item.hip}</td>
-                  <td className="py-2 px-3 border">{item.knee}</td>
-                  <td className="py-2 px-3 border">{item.neck}</td>
-                  <td className="py-2 px-3 border">{item.thigh}</td>
-                  <td className="py-2 px-3 border">{item.wrist}</td>
-                  <td className="py-2 px-3 border">{item.weight}</td>
-                  <td className="py-2 px-3 border">{item.height}</td>
-                </tr>
-              ))}
-            </tbody>
-          }
-        </table>
+        <div className="overflow-x-auto">
+          <table className="min-w-full bg-white border">
+            <thead className="bg-gray-100">
+              <tr>
+                <th className="py-2 px-3 border">Order</th>
+                <th className="py-2 px-3 border">Age</th>
+                <th className="py-2 px-3 border">Abdomen</th>
+                <th className="py-2 px-3 border">Ankle</th>
+                <th className="py-2 px-3 border">Biceps</th>
+                <th className="py-2 px-3 border">Bodyfat</th>
+                <th className="py-2 px-3 border">Chest</th>
+                <th className="py-2 px-3 border">Density</th>
+                <th className="py-2 px-3 border">Forearm</th>
+                <th className="py-2 px-3 border">Hip</th>
+                <th className="py-2 px-3 border">Knee</th>
+                <th className="py-2 px-3 border">Neck</th>
+                <th className="py-2 px-3 border">Thigh</th>
+                <th className="py-2 px-3 border">Wrist</th>
+                <th className="py-2 px-3 border">Weight</th>
+                <th className="py-2 px-3 border">Height</th>
+              </tr>
+            </thead>
+            {category === 'all' ? (
+              <tbody>
+                {data.map((item, index) => (
+                  <tr
+                    key={index}
+                    className={`${
+                      index % 2 === 0 ? 'bg-white' : 'bg-gray-50'
+                    } border-b hover:bg-gray-100`}
+                  >
+                    <td className="py-2 px-3 border">{index + 1}</td>
+                    <td className="py-2 px-3 border">{item.age_analys}</td>
+                    <td className="py-2 px-3 border">{item.avg_abdomen}</td>
+                    <td className="py-2 px-3 border">{item.avg_ankle}</td>
+                    <td className="py-2 px-3 border">{item.avg_biceps}</td>
+                    <td className="py-2 px-3 border">{item.avg_bodyfat}</td>
+                    <td className="py-2 px-3 border">{item.avg_chest}</td>
+                    <td className="py-2 px-3 border">{item.avg_density}</td>
+                    <td className="py-2 px-3 border">{item.avg_forearm}</td>
+                    <td className="py-2 px-3 border">{item.avg_hip}</td>
+                    <td className="py-2 px-3 border">{item.avg_knee}</td>
+                    <td className="py-2 px-3 border">{item.avg_neck}</td>
+                    <td className="py-2 px-3 border">{item.avg_thigh}</td>
+                    <td className="py-2 px-3 border">{item.avg_wrist}</td>
+                    <td className="py-2 px-3 border">{item.avg_weight}</td>
+                    <td className="py-2 px-3 border">{item.avg_height}</td>
+                  </tr>
+                ))}
+              </tbody>
+            ) : (
+              <tbody>
+                {data.map((item, index) => (
+                  <tr
+                    key={index}
+                    className={`${
+                      index % 2 === 0 ? 'bg-white' : 'bg-gray-50'
+                    } border-b hover:bg-gray-100`}
+                  >
+                    <td className="py-2 px-3 border">{index + 1}</td>
+                    <td className="py-2 px-3 border">{item.age}</td>
+                    <td className="py-2 px-3 border">{item.abdomen}</td>
+                    <td className="py-2 px-3 border">{item.ankle}</td>
+                    <td className="py-2 px-3 border">{item.biceps}</td>
+                    <td className="py-2 px-3 border">{item.bodyFat}</td>
+                    <td className="py-2 px-3 border">{item.chest}</td>
+                    <td className="py-2 px-3 border">{item.density}</td>
+                    <td className="py-2 px-3 border">{item.forearm}</td>
+                    <td className="py-2 px-3 border">{item.hip}</td>
+                    <td className="py-2 px-3 border">{item.knee}</td>
+                    <td className="py-2 px-3 border">{item.neck}</td>
+                    <td className="py-2 px-3 border">{item.thigh}</td>
+                    <td className="py-2 px-3 border">{item.wrist}</td>
+                    <td className="py-2 px-3 border">{item.weight}</td>
+                    <td className="py-2 px-3 border">{item.height}</td>
+                  </tr>
+                ))}
+              </tbody>
+            )}
+          </table>
+        </div>
       )}
     </div>
   );
