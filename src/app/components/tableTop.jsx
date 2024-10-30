@@ -1,7 +1,7 @@
 'use client';  // ระบุว่าเป็น Client Component
 
+import axios from 'axios';
 import { useState, useEffect } from 'react';
-import { myapi } from '../../../lib/axios';
 
 let state = 1;
 export default function TopPage() {
@@ -16,8 +16,7 @@ export default function TopPage() {
     const fetchData = async () => {
       setLoading(true);
       try {
-        const response = await myapi.get(
-          `/searchTop?search=${search}&category=${category}&orderby=${orderby}`
+        const response = await axios.get(process.env.URL_BACKEND+`/searchTop?search=${search}&category=${category}&orderby=${orderby}`
         );
         setData(response.data); // ตั้งค่าข้อมูลในตาราง
       } catch (error) {

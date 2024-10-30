@@ -3,7 +3,8 @@ import React, { useState } from 'react'
 import Navbar from '../components/Navbar'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { myapi } from '../../../lib/axios';
+import axios from 'axios'
+
 
 
 const LoginPage = () => {
@@ -25,7 +26,7 @@ const LoginPage = () => {
       return;
     }
       try {
-        const response = await myapi.post('/usersLogin', {
+        const response = await axios.get(process.env.URL_BACKEND+'/usersLogin', {
           userName,
           password,
         });

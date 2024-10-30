@@ -1,6 +1,6 @@
 "use client";
+import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { myapi } from '../../../lib/axios';
 
 function ProfilePage() {
   const [userNameLocal, setUserNameLocal] = useState('');
@@ -16,7 +16,7 @@ function ProfilePage() {
       const fetchUserData = async () => {
         if (userName) {
           try {
-            const response = await myapi.get(`/userProfile?userNameLocal=${userName}`);
+            const response = await axios.get(process.env.URL_BACKEND+`/userProfile?userNameLocal=${userName}`);
             setUserData(response.data);
             console.log(response.data);
           } catch (error) {

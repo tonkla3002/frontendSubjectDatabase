@@ -2,7 +2,8 @@
 import React, { useState } from 'react';
 import Navbar from '../components/Navbar';
 import Link from 'next/link';
-import { myapi } from '../../../lib/axios';
+import axios from 'axios';
+
 
 const RegisterPage = () => {
     const [userName, setUserName] = useState("");
@@ -28,7 +29,7 @@ const RegisterPage = () => {
 
         try {
             // Make an Axios POST request to the registration endpoint
-            const response = await myapi.post('/usersRegister', {
+            const response = awaitaxios.get(process.env.URL_BACKEND+'/usersRegister', {
                 email,
                 userName,
                 password,

@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useRef, useEffect } from "react";
 import { Chart } from "chart.js/auto";
-import { myapi } from "../../../lib/axios";
+import axios from "axios";
 
 function BarChart() {
   const chartRef = useRef(null);
@@ -27,7 +27,7 @@ function BarChart() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await myapi.get("/BodyMeasurements");
+        const response = await axios.get(process.env.URL_BACKEND+"/BodyMeasurements");
         setChartData(response.data);
         setDataHistory([response.data]);
       } catch (error) {

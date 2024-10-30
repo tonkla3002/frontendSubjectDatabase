@@ -1,7 +1,8 @@
 "use client";
 import React from 'react';
 import NavbarDash from '../components/NavbarDash';
-import { myapi } from '../../../lib/axios';
+import axios from 'axios';
+
 
 function Profilepage() {
   const handleSubmit = async (event) => {
@@ -27,7 +28,7 @@ function Profilepage() {
 
     // Process or send the form data here
     try {
-      const response = await myapi.post('/userProfile', {
+      const response = await axios.get(process.env.URL_BACKEND+'/userProfile', {
         userNameLocal,
         abdomen,
         ankle,
