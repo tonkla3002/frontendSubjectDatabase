@@ -28,7 +28,7 @@ function Profilepage() {
 
     // Process or send the form data here
     try {
-      const response = await axios.get(process.env.URL_BACKEND+'/userProfile', {
+      const response = await axios.post(process.env.URL_BACKEND+'/userProfile', {
         userNameLocal,
         abdomen,
         ankle,
