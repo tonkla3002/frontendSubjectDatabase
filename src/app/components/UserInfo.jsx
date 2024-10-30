@@ -131,15 +131,21 @@ function ProfilePage() {
             </p>
           </div>
           <div>
-            <p className="text-gray-600">Weight:</p>
+            <p className="text-gray-600">Weight (lbs):</p>
             <p className="text-gray-800 font-medium">
               {userData.weight || 'N/A'}
             </p>
           </div>
           <div>
-            <p className="text-gray-600">Height:</p>
+            <p className="text-gray-600">Height (inches):</p>
             <p className="text-gray-800 font-medium">
               {userData.height || 'N/A'}
+            </p>
+          </div>
+          <div>
+            <p className="text-gray-600">Age:</p>
+            <p className="text-gray-800 font-medium">
+              {userData.age || 'N/A'}
             </p>
           </div>
         </div>

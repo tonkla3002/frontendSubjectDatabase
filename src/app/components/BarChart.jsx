@@ -278,7 +278,7 @@ function BarChart() {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <div className="text-center">
         <p className="text-lg font-semibold mb-2">
-          Density, Bodyfat: ไม่มีหน่วยวัด
+          Density, Bodyfat: ไม่มีหน่วยวัด , Height: inches , Weight: lbs
         </p>
         <p className="text-lg font-semibold mb-4">อื่น ๆ: เซนติเมตร (cm)</p>
       </div>

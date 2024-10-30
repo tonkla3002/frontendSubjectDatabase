@@ -22,6 +22,7 @@ function Profilepage() {
     const wrist = event.target.wrist.value;
     const weight = event.target.weight.value;
     const height = event.target.height.value;
+    const age = event.target.age.value;
     let userNameLocal = localStorage.getItem('userName')
 
     // Process or send the form data here
@@ -41,7 +42,8 @@ function Profilepage() {
         thigh,
         wrist,
         weight,
-        height
+        height,
+        age
       });
     } catch (error) {
       console.error("Error during registration:", error);
@@ -106,12 +108,16 @@ function Profilepage() {
                 <input type="text" name="wrist" className="w-full px-3 py-2 border rounded-md" />
               </div>
               <div>
-                <label className="block text-sm font-medium mb-1">Weight:</label>
+                <label className="block text-sm font-medium mb-1">Weight (lbs):</label>
                 <input type="text" name="weight" className="w-full px-3 py-2 border rounded-md" />
               </div>
               <div>
-                <label className="block text-sm font-medium mb-1">Height:</label>
+                <label className="block text-sm font-medium mb-1">Height (inches):</label>
                 <input type="text" name="height" className="w-full px-3 py-2 border rounded-md" />
+              </div>
+              <div>
+                <label className="block text-sm font-medium mb-1">Age:</label>
+                <input type="text" name="age" className="w-full px-3 py-2 border rounded-md" />
               </div>
             </div>
             <button type="submit" className="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 transition duration-200">
