@@ -27,7 +27,7 @@ function BarChart() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(process.env.URL_BACKEND+"/BodyMeasurements");
+        const response = await axios.get(process.env.NEXT_PUBLIC_API_URL+"/BodyMeasurements");
         setChartData(response.data);
         setDataHistory([response.data]);
       } catch (error) {

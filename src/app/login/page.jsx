@@ -26,7 +26,7 @@ const LoginPage = () => {
       return;
     }
       try {
-        const response = await axios.post(process.env.URL_BACKEND+'/usersLogin', {
+        const response = await axios.post(process.env.NEXT_PUBLIC_API_URL+'/usersLogin', {
           userName,
           password,
         });

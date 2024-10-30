@@ -16,7 +16,7 @@ function ProfilePage() {
       const fetchUserData = async () => {
         if (userName) {
           try {
-            const response = await axios.get(process.env.URL_BACKEND+`/userProfile?userNameLocal=${userName}`);
+            const response = await axios.get(process.env.NEXT_PUBLIC_API_URL+`/userProfile?userNameLocal=${userName}`);
             setUserData(response.data);
             console.log(response.data);
           } catch (error) {

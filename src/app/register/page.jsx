@@ -29,7 +29,7 @@ const RegisterPage = () => {
 
         try {
             // Make an Axios POST request to the registration endpoint
-            const response = await axios.post(process.env.URL_BACKEND+'/usersRegister', {
+            const response = await axios.post(process.env.NEXT_PUBLIC_API_URL+'/usersRegister', {
                 email,
                 userName,
                 password,
